@@ -1,6 +1,6 @@
 {
   "name": "package-sync-version",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Sync version of monorepo packages locally.",
   "main": "index.js",
   "bin": {

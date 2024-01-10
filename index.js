@@ -85,21 +85,28 @@ packages.forEach(pkg => {
     return
   }
 
-  if (!packageJson.dependencies) {
+  if (packageJson.name === syncPackageName) {
     return
   }
 
-  if (!packageJson.dependencies[syncPackageName]) {
-    return
-  }
+  const depsKeys = ['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']
+  for (let depKey of depsKeys) {
+    if (!packageJson[depKey]) {
+      continue
+    }
 
-  const oldVersion = packageJson.dependencies[syncPackageName]
-  if (oldVersion === newVersion) {
-    console.log(chalk.yellow(`not modified pkg ${pkg}:`.padEnd(30, '.'), `${oldVersion}`))
-    return
-  }
+    if (!packageJson[depKey][syncPackageName]) {
+      continue
+    }
 
-  packageJson.dependencies[syncPackageName] = newVersion
-  fs.writeFileSync(filepath, `${JSON.stringify(packageJson, null, 2)}\n`)
-  console.log(chalk.green(`UPDATED pkg ${pkg}:`.padEnd(30, '.'), `${oldVersion} => ${newVersion}`))
+    const oldVersion = packageJson[depKey][syncPackageName]
+    if (oldVersion === newVersion) {
+      console.log(chalk.yellow(`not modified pkg ${pkg}:`.padEnd(30, '.'), `${oldVersion}`))
+      return
+    }
+
+    packageJson[depKey][syncPackageName] = newVersion
+    fs.writeFileSync(filepath, `${JSON.stringify(packageJson, null, 2)}\n`)
+    console.log(chalk.green(`UPDATED pkg ${pkg}:`.padEnd(30, '.'), `${oldVersion} => ${newVersion}`))
+  }
 })
