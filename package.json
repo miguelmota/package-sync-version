@@ -1,0 +1,49 @@
+{
+  "name": "package-sync-version",
+  "version": "0.0.1",
+  "description": "Sync version of monorepo packages locally.",
+  "main": "index.js",
+  "bin": {
+    "package_sync_version": "bin/package_sync_version",
+    "package-sync-version": "bin/package_sync_version"
+  },
+  "preferGlobal": true,
+  "scripts": {
+    "test": "echo 'todo'",
+    "lint": "standard --fix index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/miguelmota/package-sync-version"
+  },
+  "keywords": [
+    "package",
+    "workspace",
+    "sync",
+    "package",
+    "version"
+  ],
+  "author": {
+    "name": "Miguel Mota",
+    "email": "hello@miguelmota.com",
+    "url": "https://miguelmota.com/"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/miguelmota/package-sync-version/blob/master/LICENSE"
+  },
+  "bugs": {
+    "url": "https://github.com/miguelmota/package-sync-version/issues"
+  },
+  "homepage": "https://github.com/miguelmota/package-sync-version",
+  "devDependencies": {
+    "standard": "^16.0.3"
+  },
+  "engines": {
+    "node": ">= 7.6.0"
+  },
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "find-up": "^4.1.0"
+  }
+}
